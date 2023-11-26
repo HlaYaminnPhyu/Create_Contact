@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import ContactList from "../components/ContactList";
 import MobileCreate from "../components/MobileCreate";
+import Favourite from "../components/Favourite";
 
 export default function Home() {
 	//   const { theme, setTheme } = useTheme();
@@ -15,6 +16,7 @@ export default function Home() {
 			<Navbar />
 			<MobileCreate />
 			<ContactList />
+		
 			{/* <div className="text-3xl dark:text-red-500 text-blue-500">
         <h1>Home {theme}</h1>
         <button onClick={handleClick}>change theme</button>

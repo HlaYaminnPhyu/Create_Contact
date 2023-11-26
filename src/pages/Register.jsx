@@ -11,6 +11,8 @@ import { toggleNavbar } from "../redux/service/navbarSlice";
 const Register = () => {
   const isOpen = useSelector((state) => state.navbar.isOpen);
   const [getRegister, { isLoading }] = useGetRegisterMutation();
+  const {mode} = useSelector(state=>state.darkMode);
+
   const dispatch = useDispatch();
 
   const form = useForm({
@@ -42,22 +44,22 @@ const Register = () => {
               </div>
               <div className=" hidden md:flex justify-center gap-[8px]">
                 {isOpen ? (
-                  <p className=" flex items-center select-none leftAni text-gray-600">
+                  <p className={`${mode?"text-gray-600":"text-white"} flex items-center select-none leftAni`}>
                     Already have an account?
                   </p>
                 ) : (
-                  <p className=" flex items-center select-none downAni text-gray-600">
+                  <p className={`${mode?"text-gray-600":"text-white"} flex items-center select-none downAni`}>
                     Already have an account?
                   </p>
                 )}
 
                 <span onClick={() => dispatch(toggleNavbar())} className="">
                   {isOpen ? (
-                    <button className=" select-none leftAni text-blue-700 border bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
+                    <button className=" select-none leftAni text-[#b6ccfe] border bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
                       Log in here.
                     </button>
                   ) : (
-                    <button className=" select-none upAni text-blue-700 border bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] glassmorphic border-solid border-t border-l rounded-lg p-2 cursor-pointer">
+                    <button className=" select-none upAni text-[#b6ccfe] border bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] glassmorphic border-solid border-t border-l rounded-lg p-2 cursor-pointer">
                       Log in here.
                     </button>
                   )}
@@ -88,7 +90,7 @@ const Register = () => {
       "
                 >
                   <div
-                    className={` container mx-auto ${
+                    className={`${mode?"text-gray:600":"text-white"} container mx-auto ${
                       isOpen ? "endTypeAni" : "twoTypeAni"
                     }`}
                   >
@@ -98,7 +100,7 @@ const Register = () => {
                   <span
                     className={` grid  ${
                       isOpen ? "endAni" : "upAni"
-                    } justify-center mt-[-6px] text-[13px]`}
+                    } ${mode?"text-gray:600":"text-white"} justify-center mt-[-6px] text-[13px]`}
                   >
                     Please sign in here to proceed.
                   </span>
@@ -126,22 +128,22 @@ const Register = () => {
 
                 <div className=" text-[13px] md:hidden flex justify-center gap-1 md:gap-[6px]">
                   {isOpen ? (
-                    <p className=" select-none text-[13px] leftAni text-gray-600">
+                    <p className={`${mode?"text-gray-600":"text-white"} select-none text-[13px] leftAni `}>
                       Already have an account?
                     </p>
                   ) : (
-                    <p className=" select-none downAni text-gray-600">
+                    <p className={`${mode?"text-gray-600":"text-white"} select-none downAni `}>
                       Already have an account?
                     </p>
                   )}
 
                   <span onClick={() => dispatch(toggleNavbar())} className="">
                     {isOpen ? (
-                      <p className=" select-none text-[13px] leftAni text-blue-700 cursor-pointer">
+                      <p className=" select-none text-[13px] leftAni text-red-700 cursor-pointer">
                         Log in here.
                       </p>
                     ) : (
-                      <p className=" select-none upAni text-blue-700 cursor-pointer">
+                      <p className=" select-none upAni text-red-700 cursor-pointer">
                         Login here.
                       </p>
                     )}

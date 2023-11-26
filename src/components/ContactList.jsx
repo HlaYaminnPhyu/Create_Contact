@@ -1,16 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { Avatar, Loader, Table } from "@mantine/core";
+import { MdOutlineDeleteOutline } from "react-icons/md"
 import {
   useDeleteContactMutation,
   useGetContactQuery,
 } from "../redux/Api/contactListApi";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addContacts, addFavourite } from "../redux/service/contactSlice";
-import { Menu, Button } from "@mantine/core";
+import { Menu } from "@mantine/core";
 import { RiMore2Fill } from "react-icons/ri";
+import { FaUserEdit, FaUser, FaHeart } from "react-icons/fa";
+
+
+
 
 const ContactList = () => {
   const token = Cookies.get("token");
@@ -31,8 +36,8 @@ const ContactList = () => {
   const deleteHandler = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "bg-green-700 p-2 px-5 rounded-lg mx-2 text-white",
-        cancelButton: "bg-red-700 p-2 px-5 rounded-lg text-white",
+        confirmButton: "bg-green-700 p-2 px-5 rounded-lg mx-2 text-[#F2F1F2]",
+        cancelButton: "bg-red-700 p-2 px-5 rounded-lg text-[#F2F1F2]",
       },
       buttonsStyling: false,
     });
@@ -82,7 +87,9 @@ const ContactList = () => {
     })
     ?.map((contact) => {
       return (
-        <tr className="hover:bg-blue-300 contact-list" key={contact?.id}>
+      
+        
+        <tr className={`${mode?"hover:bg-[#e2eafc]":"hover:"}  contact-list`} key={contact?.id}>
           <td className="hidden md:table-cell">
             {contact?.email === null ? (
               <Avatar color="pink" size="md" radius="xl"></Avatar>
@@ -95,28 +102,28 @@ const ContactList = () => {
           </td>
           <td
             className={`${
-              mode ? "text-slate-900" : "text-white"
+              mode ? "text-[#040404]" : "text-[#F2F1F2]"
             } hidden md:table-cell`}>
             {contact?.name === null ? "exampleName" : contact?.name}
           </td>
-          <td className={`${mode ? "text-slate-900" : "text-white"}`}>
+          <td className={`${mode ? "text-[#040404]" : "text-[#F2F1F2]"}`}>
             {contact?.email === null ? "example@gmail.com" : contact?.email}
           </td>
           <td
             className={`${
-              mode ? "text-slate-900" : "text-white"
+              mode ? "text-[#040404]" : "text-[#F2F1F2]"
             } hidden md:table-cell`}>
             {contact?.phone === null ? "-" : contact?.phone}
           </td>
           <td
             className={`${
-              mode ? "text-slate-900" : "text-white"
+              mode ? "text-[#040404]" : "text-[#F2F1F2]"
             } hidden md:table-cell`}>
             {contact?.address === null ? "-" : contact?.address}
           </td>
           <td className="del-icon">
             <div className="flex justify-end">
-              <Menu width={200} shadow="md">
+              <Menu width={201} shadow="md">
                 <Menu.Target>
                   <div className=" flex items-center hover:bg-white w-[30px] h-[30px] rounded-[50%]">
                     <RiMore2Fill className="text-2xl ml-[3px] text-gray-400" />
@@ -124,30 +131,49 @@ const ContactList = () => {
                 </Menu.Target>
 
                 <Menu.Dropdown>
+                
                   <Menu.Item>
+                    <div onClick={() => deleteHandler(contact?.id)} className="flex justify-between items-center">
                     <p
-                      onClick={() => deleteHandler(contact?.id)}
+                      
                       className=" text-red-700 cursor-pointer">
                       Delete
+                     
                     </p>
+                    <MdOutlineDeleteOutline className=" text-xl"/>
+                    </div>
+                   
                   </Menu.Item>
 
                   <Menu.Item target="_blank">
-                    <Link to={`/detail/${contact?.id}`}>
+                  <Link to={`/detail/${contact?.id}`}>
+                  <div className="flex justify-between items-center text-[#0466c8]">
+                    
                       <p className="">Detail</p>
+                    
+                    <FaUser />
+                    </div>
                     </Link>
                   </Menu.Item>
                   <Menu.Item>
+                  <div onClick={() => dispatch(addFavourite(contact))} className="flex justify-between items-center">
                     <p
-                      onClick={() => dispatch(addFavourite(contact))}
+                      
                       className=" text-blue-700 cursor-pointer">
                       Favourite
                     </p>
+                    <FaHeart />
+                    </div>
                   </Menu.Item>
 
                   <Menu.Item target="_blank">
-                    <Link to={`/edit/${contact?.id}`}>
+                  <Link to={`/edit/${contact?.id}`}>
+                  <div className="flex justify-between items-center">
+                    
                       <p className="">Edit</p>
+                    
+                    <FaUserEdit />
+                    </div>
                     </Link>
                   </Menu.Item>
                 </Menu.Dropdown>
@@ -155,6 +181,9 @@ const ContactList = () => {
             </div>
           </td>
         </tr>
+       
+        
+        
       );
     });
 
@@ -185,33 +214,33 @@ const ContactList = () => {
             isOpen ? "lg:w-[70%]" : "lg:w-full"
           }`}>
           <div className="flex justify-start pt-0 md:pt-10">
-            <Table className="relative top-24 lg:top-12 md:top-16">
+            <Table className="relative top-24 lg:top-12 md:top-16 table-auto">
               <thead className="">
-                <tr className="">
-                  <th
-                    className={`${
-                      mode ? "color-slate" : "color-white !important"
-                    } hidden md:table-cell`}>
+                <tr className=" mb-6">
+                <td
+                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold` } >
+                    
+                  </td>
+                  <td
+                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold ms-4`} >
                     Name
-                  </th>
-                  <th className={`${mode ? "color-slate" : "color-white"}`}>
+                  </td>
+                  <td className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`}>
                     Email
-                  </th>
-                  <th
-                    className={`${
-                      mode ? "color-slate" : "color-white"
-                    } hidden md:table-cell`}>
+                  </td>
+                  <td
+                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`}>
                     Phone Number
-                  </th>
-                  <th
-                    className={`${
-                      mode ? "color-slate" : "color-white"
-                    } hidden md:table-cell`}>
+                  </td>
+                  <td
+                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`}>
                     Address
-                  </th>
+                  </td>
                 </tr>
+                
               </thead>
-              <tbody className="">{rows}</tbody>
+              
+              <tbody className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} mt-5`}>{rows}</tbody>
             </Table>
           </div>
         </div>

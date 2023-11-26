@@ -1,7 +1,7 @@
 import { Avatar, Loader, Menu, ScrollArea } from "@mantine/core";
 import Cookies from "js-cookie";
 import { BsBoxArrowInRight } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../style/glassmorphic.css";
 import { useGetLogOutMutation } from "../redux/Api/contactApi";
 import { removeUser } from "../redux/service/authSlice";
@@ -11,6 +11,9 @@ const UserMenu = () => {
   const token = Cookies.get("token");
 
   const user = JSON.parse(Cookies.get("user"));
+  console.log(user);
+  const { mode } = useSelector((state) => state.darkMode);
+
 
   const [getLogOut, { isLoading }] = useGetLogOutMutation();
   const nav = useNavigate();
@@ -60,7 +63,7 @@ const UserMenu = () => {
                 <ScrollArea w={160} h={30} type="never">
                   <p
                     title="Scroll to see full name"
-                    className=" text-gray-600 font-medium text-2xl pb-1"
+                    className={`${mode ? "text-gray-600" :"text-white"} font-medium text-2xl pb-1`}
                   >
                     {user?.name}
                   </p>
@@ -69,7 +72,7 @@ const UserMenu = () => {
                 <Link to={"/userProfile"}>
                   <div
                     title="To User Profile"
-                    className=" relative ml-[-18px] mt-[1px] bg-transparent w-9 h-9 rounded-[50%] items-center hover:bg-gray-400 hover:text-white"
+                    className={`relative ml-[-18px] mt-[1px] bg-transparent w-9 h-9 rounded-[50%] items-center ${mode ? "text-gray-400" : "text-white"} hover:bg-gray-400 hover:text-white`}
                   >
                     <BsBoxArrowInRight className=" absolute mt-[6px] ml-[3px] text-2xl " />
                   </div>
@@ -79,7 +82,7 @@ const UserMenu = () => {
               <ScrollArea w={170} type="never">
                 <p
                   title="Scroll to see full email"
-                  className=" overflow-hidden text-gray-600 mb-[18px] font-medium"
+                  className={`${mode ? "text-gray-600" :"text-white"} overflow-hidden  mb-[18px] font-medium`}
                 >
                   {user?.email}
                 </p>

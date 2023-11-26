@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
 import Routeguard from "../components/Routeguard";
 import CreateContact from "../components/CreateContact";
 import Detail from "../components/Detail";

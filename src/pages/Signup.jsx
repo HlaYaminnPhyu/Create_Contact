@@ -10,6 +10,7 @@ import "../style/glassmorphic.css";
 const Signup = () => {
   const [register, { isLoading }] = useRegisterMutation();
   const nav = useNavigate();
+  const {mode} = useSelector(state=>state.darkMode);
 
   const schema = z.object({
     name: z.string().min(2, { message: "Name should have at least 2 letters" }),
@@ -79,9 +80,9 @@ const Signup = () => {
           variant="filled"
         />
         <div className=" flex gap-1">
-          <p className=" select-none text-gray-500">Already have an account?</p>
+          <p className={`${mode?"text-gray-600":"text-white"} select-none`}>Already have an account?</p>
           <Link to={"/login"}>
-            <p className=" select-none text-blue-500 cursor-pointer">
+            <p className=" select-none text-blue-300 cursor-pointer">
               Login here.
             </p>
           </Link>

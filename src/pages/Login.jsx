@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const isOpen = useSelector((state) => state.navbar.isOpen);
   const [getLogin, { isLoading }] = useGetLoginMutation();
+  const {mode} = useSelector(state=>state.darkMode);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const form = useForm({
@@ -38,22 +39,22 @@ const Login = () => {
               </div>
               <div className=" hidden md:flex justify-center gap-[8px]">
                 {isOpen ? (
-                  <p className=" flex items-center select-none logAni text-gray-600">
+                  <p className={`${mode?"text-gray-600":"text-white"} flex items-center select-none logAni text-gray-600`}>
                     New to our service?
                   </p>
                 ) : (
-                  <p className=" flex items-center select-none endAni text-gray-600">
+                  <p className={`${mode?"text-gray-600":"text-white"} flex items-center select-none endAni text-gray-600`}>
                     New to our service?
                   </p>
                 )}
 
                 <span onClick={() => dispatch(toggleNavbar())} className="">
                   {isOpen ? (
-                    <button className=" relative z-20 select-none regAni text-red-700 bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
+                    <button className=" relative z-20 select-none regAni text-[#b6ccfe] bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
                       Register here.
                     </button>
                   ) : (
-                    <button className=" relative z-20 select-none endAni text-red-700 bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
+                    <button className=" relative z-20 select-none endAni text-[#b6ccfe] bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
                       Register here.
                     </button>
                   )}
@@ -85,7 +86,7 @@ const Login = () => {
                   isOpen ? "finalAni" : "formAni"
                 }`}
               >
-                <h2 className={` text-gray-500 font-medium text-[28px]`}>
+                <h2 className={` ${mode?"text-gray-500":"text-white"} font-medium text-[28px]`}>
                   <span
                     className={` container mx-auto ${
                       isOpen ? "typeAni" : "endTypeAni"
@@ -115,22 +116,22 @@ const Login = () => {
 
                 <div className=" text-sm md:hidden flex justify-center gap-1 lg:gap-[6px]">
                   {isOpen ? (
-                    <p className=" select-none logAni text-gray-600">
+                    <p className={`${mode?"text-gray-600":"text-white"} select-none logAni `}>
                       New to our service?
                     </p>
                   ) : (
-                    <p className=" select-none endAni text-gray-600">
+                    <p className={`${mode?"text-gray-600":"text-white"} select-none endAni `}>
                       New to our service?
                     </p>
                   )}
 
                   <span onClick={() => dispatch(toggleNavbar())} className="">
                     {isOpen ? (
-                      <p className=" select-none regAni text-blue-700 cursor-pointer">
+                      <p className=" select-none regAni text-red-700 cursor-pointer">
                         Register here.
                       </p>
                     ) : (
-                      <p className=" select-none endAni text-blue-700 cursor-pointer">
+                      <p className=" select-none endAni text-red-700 cursor-pointer">
                         Register here.
                       </p>
                     )}
@@ -157,11 +158,7 @@ const Login = () => {
             </div>
           </div>
           <div className={` absolute`}>
-            {/* {isOpen ? null : (
-              <div className=" relative z-10">
-                <Register />
-              </div>
-            )} */}
+            
             <Register />
           </div>
         </div>
