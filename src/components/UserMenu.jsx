@@ -38,6 +38,7 @@ const UserMenu = () => {
         width={200}
         shadow="md"
         transitionProps={{ transition: "scale-y", duration: 150 }}
+        
       >
         {/* Icon is here. */}
         <Menu.Target>

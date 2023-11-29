@@ -73,6 +73,8 @@ const Favourite = () => {
       );
     });
 
+
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -83,7 +85,8 @@ const Favourite = () => {
 
   return (
     <div className="flex justify-center">
-      {favourite.length === 0 ? (
+      
+      {favourite?.length === 0 ? (
         <div>
           
           <Navbar/>
@@ -103,40 +106,70 @@ const Favourite = () => {
         <div>
           <Navbar/>
         <div
-          className={`lg:w-[70%] w-screen absolute ${
+          className={`w-screen lg:w-[70%] absolute ${
             isOpen ? "lg:left-[305px]" : "lg:left-0"
           } ${isOpen ? "lg:px-0" : "lg:px-3"} duration-500 transition-all ${
             isOpen ? "lg:w-[70%]" : "lg:w-full"
           }`}>
-          <div className="flex justify-start pt-0 md:pt-10">
-            <Table className="relative top-24 lg:top-12 md:top-16 table-auto">
-              <thead className="">
-                <tr className="">
+          <div className="flex pt-0 md:pt-10">
+      
+          <Table className=" relative top-[80px] md:top-16 sm:top[150px]">
+            
+            <thead className="">
+              {mode ? <tr className=" mb-6 ">
+                
+              <th
+                  className={` text-sm font-semibold md:table-cell hidden` } >
+                  
+                </th>
                 <th
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"}`} >
+                  className={` text-sm font-semibold md:table-cell hidden`} >
+                  Name
+                </th>
+                <th className={` text-sm font-semibold md:table-cell hidden`}>
+                  Email
+                </th>
+                <th
+                  className={` text-sm font-semibold md:table-cell hidden`}>
+                  Phone Number
+                </th>
+                <th
+                  className={` text-sm font-semibold md:table-cell hidden`}>
+                  Address
+                </th>
+              </tr> : <tr className=" mb-6 ">
+                
+                <td
+                    className={` text-white text-sm font-semibold md:table-cell hidden` } >
                     
-                  </th>
-                  <th
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`} >
+                  </td>
+                  <td
+                    className={` text-white text-sm font-semibold md:table-cell hidden `} >
                     Name
-                  </th>
-                  <th className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"}`}>
+                  </td>
+                  <td className={` text-white text-sm font-semibold md:table-cell hidden`}>
                     Email
-                  </th>
-                  <th
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"}`}>
+                  </td>
+                  <td
+                    className={`text-white text-sm font-semibold md:table-cell hidden`}>
                     Phone Number
-                  </th>
-                  <th
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"}`}>
+                  </td>
+                  <td
+                    className={`text-white text-sm font-semibold md:table-cell hidden`}>
                     Address
-                  </th>
-                </tr>
-              </thead>
-              <tbody className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"}`}>{rows}</tbody>
-            </Table>
+                  </td>
+                </tr>}
+              
+              
+            </thead>
+            
+            <tbody className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} mt-5`}>{rows}</tbody>
+          </Table>
+            
           </div>
+          
         </div>
+        
         </div>
         
       )}
@@ -145,3 +178,5 @@ const Favourite = () => {
 };
 
 export default Favourite;
+
+

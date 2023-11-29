@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { Link, useParams } from "react-router-dom";
 import { useGetSingleContactQuery } from "../redux/Api/contactListApi";
 import { Loader } from "@mantine/core";
-import a1 from "../images/avator1.jpeg";
+import a1 from "../images/7309681.jpg";
 import {
   BsTelephone,
   BsQuestionOctagon,
@@ -55,9 +55,9 @@ const Detail = () => {
   }
 
   return (
-    <div className=" ">
+    <div className={` min-h-min ${mode?"bg-white":"bg-black"}`}>
   
-     <nav className="p-2 flex items-center justify-between space-x-5 cursor-pointer fixed z-40 top-0 left-0 right-0">
+     <nav className={`${mode?"bg-white":"bg-black"} p-2 flex items-center justify-between space-x-5 cursor-pointer fixed z-40 top-0 left-0 right-0`}>
            <div className={` ${mode ?"text-[#5f6368]" : "text-white"} flex items-center space-x-3`}>
             <Link to={"/"}><div className="">
               <AiOutlineMenu className={`text-xl hover:bg-[#3c404314] cursor-pointer w-10 h-10 p-3 hover:rounded-full duration-100`}/> 
@@ -89,7 +89,7 @@ const Detail = () => {
             <img
               src={a1}
               alt=""
-              className=" w-48 h-48 sm:w-60 sm:h-60 object-cover mt-20 sm:mt-12 rounded-full"
+              className=" w-48 h-48 mt-20 object-cover rounded-full"
             />
             <div className=" flex flex-col gap-3">
               <p className={`font-semibold text-2xl mb-3 mt-0 sm:mt-20 text-gray-700 font-sans tracking-wide ${mode ? "text-slate-900" : "text-white"}`}>

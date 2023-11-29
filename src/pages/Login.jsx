@@ -50,11 +50,11 @@ const Login = () => {
 
                 <span onClick={() => dispatch(toggleNavbar())} className="">
                   {isOpen ? (
-                    <button className=" relative z-20 select-none regAni text-[#b6ccfe] bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
+                    <button className=" relative z-20 select-none regAni text-red-300 bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
                       Register here.
                     </button>
                   ) : (
-                    <button className=" relative z-20 select-none endAni text-[#b6ccfe] bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
+                    <button className=" relative z-20 select-none endAni text-red-300 bg-[#ffffff19] backdrop-blur-sm border-t-[rgba(255,255,255,0.5)] border-l-[rgba(255,255,255,0.5)] border-solid glassmorphic border-t border-l rounded-lg p-2 cursor-pointer">
                       Register here.
                     </button>
                   )}

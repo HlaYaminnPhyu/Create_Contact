@@ -17,6 +17,7 @@ import { FaUserEdit, FaUser, FaHeart } from "react-icons/fa";
 
 
 
+
 const ContactList = () => {
   const token = Cookies.get("token");
   const { data, isLoading } = useGetContactQuery(token);
@@ -89,7 +90,7 @@ const ContactList = () => {
       return (
       
         
-        <tr className={`${mode?"hover:bg-[#e2eafc]":"hover:"}  contact-list`} key={contact?.id}>
+        <tr className={`${mode?"hover:bg-[#e2eafc]":"hover:[#e2eafc]"}  contact-list`} key={contact?.id}>
           <td className="hidden md:table-cell">
             {contact?.email === null ? (
               <Avatar color="pink" size="md" radius="xl"></Avatar>
@@ -106,7 +107,7 @@ const ContactList = () => {
             } hidden md:table-cell`}>
             {contact?.name === null ? "exampleName" : contact?.name}
           </td>
-          <td className={`${mode ? "text-[#040404]" : "text-[#F2F1F2]"}`}>
+          <td className={`${mode ? "text-[#040404]" : "text-[#F2F1F2]"} md:table-cell`}>
             {contact?.email === null ? "example@gmail.com" : contact?.email}
           </td>
           <td
@@ -197,6 +198,7 @@ const ContactList = () => {
 
   return (
     <div className="flex justify-center md:justify-start">
+      
       {data?.contacts?.data.length === 0 ? (
         <div className="flex justify-center flex-col gap-3 items-center h-screen w-[80%] mx-auto">
           <h1 className="text-3xl font-semibold text-blue-700">Hello Dear!</h1>
@@ -208,35 +210,60 @@ const ContactList = () => {
         </div>
       ) : (
         <div
-          className={`lg:w-[70%] w-screen absolute ${
+          className={`w-screen lg:w-[70%] absolute ${
             isOpen ? "lg:left-[305px]" : "lg:left-0"
           } ${isOpen ? "lg:px-0" : "lg:px-3"} duration-500 transition-all ${
             isOpen ? "lg:w-[70%]" : "lg:w-full"
           }`}>
-          <div className="flex justify-start pt-0 md:pt-10">
-            <Table className="relative top-24 lg:top-12 md:top-16 table-auto">
+          <div className="flex pt-0 md:pt-10">
+          
+            <Table className=" relative top-[80px] md:top-16 sm:top[150px]">
+            
               <thead className="">
-                <tr className=" mb-6">
-                <td
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold` } >
+                {mode ? <tr className=" mb-6 ">
+                  
+                <th
+                    className={` text-sm font-semibold md:table-cell hidden` } >
                     
-                  </td>
-                  <td
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold ms-4`} >
+                  </th>
+                  <th
+                    className={` text-sm font-semibold md:table-cell hidden`} >
                     Name
-                  </td>
-                  <td className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`}>
+                  </th>
+                  <th className={` text-sm font-semibold md:table-cell hidden`}>
                     Email
-                  </td>
-                  <td
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`}>
+                  </th>
+                  <th
+                    className={` text-sm font-semibold md:table-cell hidden`}>
                     Phone Number
-                  </td>
-                  <td
-                    className={`${mode ? "text-gray-600" : "text-[#F2F1F2]"} text-sm font-semibold`}>
+                  </th>
+                  <th
+                    className={` text-sm font-semibold md:table-cell hidden`}>
                     Address
-                  </td>
-                </tr>
+                  </th>
+                </tr> : <tr className=" mb-6 ">
+                  
+                  <td
+                      className={` text-white text-sm font-semibold md:table-cell hidden` } >
+                      
+                    </td>
+                    <td
+                      className={` text-white text-sm font-semibold md:table-cell hidden `} >
+                      Name
+                    </td>
+                    <td className={` text-white text-sm font-semibold md:table-cell hidden`}>
+                      Email
+                    </td>
+                    <td
+                      className={`text-white text-sm font-semibold md:table-cell hidden`}>
+                      Phone Number
+                    </td>
+                    <td
+                      className={`text-white text-sm font-semibold md:table-cell hidden`}>
+                      Address
+                    </td>
+                  </tr>}
+                
                 
               </thead>
               

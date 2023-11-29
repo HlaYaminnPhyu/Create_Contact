@@ -23,7 +23,7 @@ const Navbar = () => {
 
 	return (
 		<>
-		<nav className={`p-2 flex items-center w- justify-between space-x-5 cursor-pointer fixed z-40 top-0 left-0 right-0`}>
+		<nav className={`p-2 flex items-center justify-between space-x-5 cursor-pointer fixed z-40 top-2 left-0 right-0`}>
            <div className="flex items-center space-x-3">
             <div onClick={() => dispatch(toggleNavbar())} className="">
               {
@@ -56,7 +56,7 @@ const Navbar = () => {
 
 			{/* SIDEBAR */}
 			<div 
-				className={`w-[65%] md:w-[14rem] absolute h-screen lg:h-96 lg:top-[50px] z-50 text-center shadow lg:shadow-none shadow-black cursor-pointer my-0 lg:my-5 ${
+				className={`w-[65%] md:w-[14rem] absolute h-screen lg:h-96 lg:top-[60px] z-50 text-center shadow lg:shadow-none ${mode?"bg-[white]":"bg-[#040404]"} shadow-black cursor-pointer my-0 lg:my-5 ${
 					isOpen ? "left-0" : "left-[-400px]"
 				}`}
 			>
@@ -81,15 +81,15 @@ const Navbar = () => {
 					</div>
 				</Link>
 
-				<div className="flex lg:hidden items-center ms-2 mt-2 space-x-3">
+				<div className="flex lg:hidden items-center ms-2 mt-8 space-x-3">
 					<img
 						src="https://logodownload.org/wp-content/uploads/2014/09/google-logo-1.png"
 						className="h-6"
 						alt=""
 					/>
-					<span className="text-2xl">Friends</span>
+					<span className={`${mode ?"text-[#040404]" : "text-white"} text-2xl`}>Friends</span>
 					<AiOutlineClose
-						className="ms-2"
+						className={`${mode ?"text-[#040404]" : "text-white"} ms-2`}
 						onClick={() => dispatch(toggleNavbar())}
 					/>
 				</div>
